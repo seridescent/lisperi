@@ -1,13 +1,3 @@
-#!/usr/bin/env -S uv run --script
-#
-# /// script
-# requires-python = ">=3.14"
-# ///
-"""
-_lisperi_
-"""
-
-import readline  # ruff: ignore[F401]  # readline modifies built-in input function
 import string
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
@@ -70,10 +60,3 @@ def _parse(program_text: str) -> Expr:
 
 def _eval(program: Expr):
     print(program)
-
-
-if __name__ == "__main__":
-    while program_text := input("> "):
-        program = _parse(program_text)
-        _eval(program)
-        print()

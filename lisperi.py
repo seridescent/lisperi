@@ -4,6 +4,10 @@
 # requires-python = ">=3.14"
 # ///
 
+def _parse(program: str):
+    toks = program.split()
+
+
 def _eval(program: str):
     print(program)
     print()

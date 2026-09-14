@@ -22,7 +22,7 @@ def _tokenize(program) -> Iterable[str]:
                     curr_tok = ""
 
                 toks.append(c)
-            case " ":
+            case _ if c.isspace():
                 if not curr_tok:
                     continue
 

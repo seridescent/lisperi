@@ -30,3 +30,15 @@ def test_parse_multiexpr():
         [Symbol("+"), 1, 2],
         [Symbol("+"), 2, 3]
     ]
+
+
+def test_parse_whitespace():
+    assert _parse("""
+        (if (my-undefined-symbol)
+            (1)
+            (- 1 1))
+        """) == [
+            [Symbol("if"), [Symbol("my-undefined-symbol")],
+                [1],
+                [Symbol("-"), 1, 1]]
+        ]

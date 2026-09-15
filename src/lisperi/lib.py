@@ -37,7 +37,6 @@ def _tokenize(program) -> Iterable[str]:
 # TODO: make parse more robust to invalid programs?
 #   doesn't handle nicely mismatched parentheses
 def _parse(program_text: str) -> Expr:
-    ans = []
     stack = []
     for tok in _tokenize(program_text):
         match tok:
@@ -47,7 +46,7 @@ def _parse(program_text: str) -> Expr:
                 expr = stack.pop()
                 if not stack:
                     # closing top-level expr
-                    ans.append(expr)
+                    return expr
                 else:
                     stack[-1].append(expr)
             case _:
@@ -56,8 +55,14 @@ def _parse(program_text: str) -> Expr:
                 else:
                     stack[-1].append(Symbol(tok))
 
-    return ans
+    raise ValueError("Incomplete expression")
 
 
-def _eval(program: Expr):
-    print(program)
+def _eval(program: Expr) -> int:
+    match program:
+        case int(_):
+            return program
+        case [Symbol("+"), a, b]:
+            return _eval(a) + _eval(b)
+        case _:
+            raise ValueError("TODO")

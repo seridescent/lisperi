@@ -6,8 +6,8 @@ from lisperi.lib import _eval, _parse
 def main() -> None:
     while program_text := input("> "):
         program = _parse(program_text)
-        _eval(program)
-        print()
+        res = _eval(program)
+        print(res, end="\n\n")
 
 
 if __name__ == "__main__":
